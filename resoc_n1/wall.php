@@ -10,6 +10,46 @@
     <?php 
         include 'header.php';
     ?>
+    <?php 
+        include '../resoc_n1/database-connection.php';
+        
+        $listTags = [];
+        $laQuestionEnSql = "SELECT * FROM tags";
+        include '../resoc_n1/query-response.php';
+        while ($tag = $lesInformations->fetch_assoc())
+        {
+            $listTags[$tag['id']] = $tag['label'];
+        }
+
+    $postEnCours = isset($_POST['content']);
+    // if ($postEnCours){
+
+
+    //     $lInstructionSql = "INSERT INTO posts"
+    //     . "(id, user_id, content, created)"
+    //     . "VALUES (NULL, "
+    // }
+    ?>
+
+        <div id="new_post">
+            <form action="login.php" method="post">
+                <dl>
+                    <!-- pré-remplir chanmps prénom -->
+                    <dt><label for='name'>Prénom: </label></dt>
+                    <dd><input type='text'name='name'></dd>
+                    <dt><label for='content'>Message: </label></dt>
+                    <dd><input type='textarea'name='content'></dd>
+                    <dt><label for='tag'>Tags: </label></dt>
+                    <dd><select name='tag'>
+                        <?php
+                            foreach ($listTags as $id => $label)
+                                echo "<option value='$id'>$label</option>";
+                        ?>
+                    </select></dd>
+                </dl>
+            </form>    
+        </div>
+
         <div id="wrapper">
             <?php
             
