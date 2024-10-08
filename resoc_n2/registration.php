@@ -54,7 +54,7 @@
                             echo " <a href='login.php'>Connectez-vous.</a>";
                         }
                     }
-                    ?>                     
+                    ?>
                     <form action="registration.php" method="post">
                         <dl>
                             <dt><label for='pseudo'>Pseudo</label></dt>

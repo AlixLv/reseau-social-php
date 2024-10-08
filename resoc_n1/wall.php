@@ -29,7 +29,7 @@
 
             <?php
                 // var_dump($_POST);
-                $laQuestionEnSql = "
+                $getPostDataQuery = "
                     SELECT posts.content, posts.created, users.alias as author_name, 
                     users.id as user_id,
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
@@ -42,7 +42,14 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-                include 'query-response.php';
+                 
+                    $postData = $mysqli->query($getPostDataQuery);
+                    if ( ! $postData)
+                    {
+                        echo("Échec de la requete : " . $mysqli->error);
+                        exit();
+                    }
+                
                  ?>
                 
                 <?php 
@@ -76,7 +83,7 @@
                         <input type='submit'>
                      </form>    
                 </div>
-                <?php while ($post = $lesInformations->fetch_assoc())
+                <?php while ($post = $postData->fetch_assoc())
                 {
 
                     ?>                

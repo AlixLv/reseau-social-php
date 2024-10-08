@@ -14,26 +14,34 @@
             $listTags[$tag['id']] = $tag['label'];
         }
 
+
     $postEnCours = isset($_POST['content']);
-    // var_dump($_SESSION);
+
     if ($postEnCours){
-// récupérer l'id du user dont c'est la session en cours 
-    $prenom = $post['author_name'];
-    var_dump($prenom);
+
+    $id = $_GET['user_id'];
 
     $post_content = $_POST['content'];
 
-    // $post_tag = 
-
-// insérer les données dans la table post
     $insererPostDansTable = "INSERT INTO posts
     (id, user_id, content, created)
-    VALUES (NULL, " . $userId .", " . $post_content .", NOW())"; 
-        echo "🍏 " . $insererPostDansTable; 
-    }
+    VALUES (NULL, " . $id .", '" . $post_content ."', NOW())";
+    
+    $mysqli->query($insererPostDansTable);
+    
+    $myId = $mysqli->insert_id;
+    
+    $selectedTag = $_POST['tag'];
 
- // insérer le tag dans la table tag
-// afficher le nouveau message sur le mur    
+    $myInsertPostTagQuery = "INSERT INTO posts_tags
+    (id, post_id, tag_id)
+    VALUES (NULL, " . $myId . ", ". $selectedTag .")";
+
+    $mysqli->query($myInsertPostTagQuery);
+
+    header("Location: ./wall.php?user_id=" . $id);
+    }
+ 
 ?>
 
 
