@@ -2,7 +2,7 @@
     <h3>
         <time><?php echo $post['created'] ?></time>
     </h3>
-    <address><?php echo "Par " . $post['author_name'] ?></address>
+    <address><?php echo "<a href='wall.php?user_id=" . $post['user_id'] . "'>Par " .  $post['author_name'] . "</a>" ?></address>
     <div>
         <p><?php echo $post['content'] ?></p>
     </div>                                            
