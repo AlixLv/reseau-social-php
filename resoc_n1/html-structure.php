@@ -7,7 +7,7 @@
         <p><?php echo $post['content'] ?></p>
     </div>                                            
     <footer>
-        <form action="like.php" method="post">
+        <form action="like.php?user_id=<?php echo $_GET['user_id']?>" method="post">
             <input type="hidden" name="post_id" value="<?php echo $post['post_id'] ?>">
             <button type="submit" name="like"><?php echo "♥ " . $post['like_number'] ?></button>
         </form>
