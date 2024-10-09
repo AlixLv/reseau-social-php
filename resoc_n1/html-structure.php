@@ -7,7 +7,12 @@
         <p><?php echo $post['content'] ?></p>
     </div>                                            
     <footer>
-        <small><?php echo "♥ " . $post['like_number'] ?></small>
+        <?php
+            include "like.php";
+        ?>
+        <form action="like.php" method="post">
+            <button type="submit" name="like"><?php echo "♥ " . $post['like_number'] ?></button>
+        </form>
         <?php 
         $tags = explode(',', $post['taglist']);
         foreach ($tags as $tag) {
