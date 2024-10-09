@@ -55,6 +55,7 @@
                  ?>
                 
                 <?php 
+                include "utilities.php";
                 include "wall-post.php";
                 // include "wall-follow.php";
                 ?>
@@ -91,7 +92,15 @@
                 </div>
                 <div id="follow">
                     <form action="wall-follow.php?user_id=<?php echo $userId ?>" method="post">
-                        <button type="submit" name="follow">Follow</button>
+                        <button type="submit" name="follow">
+                            <?php 
+                            if (checkFollower($userId, $_SESSION['connected_id'])) {
+                                echo "Unfollow";
+                            } else {
+                                echo "Follow";
+                            }
+                            ?>
+                        </button>
                     </form>
                 </div>
                 <?php while ($post = $postData->fetch_assoc())
