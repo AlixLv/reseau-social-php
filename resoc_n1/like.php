@@ -1,7 +1,4 @@
 <?php 
-    session_start();
-    include '../resoc_n1/database-connection.php';
-
     $session_id = $_SESSION["connected_id"];
     $post_id = $post["post_id"];
     echo $post_id;

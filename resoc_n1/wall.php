@@ -17,6 +17,7 @@
             ?>
             <?php
             include 'database-connection.php';
+            $mysqli = dataBaseConnexion();
             ?>
     
             <?php
@@ -77,7 +78,10 @@
                             <dd><select name='tag'>
                 
                             <?php
-                                foreach ($listTags as $id => $label)
+                                $listTagsReady = getTags();
+                                echo('coucou');
+                                var_dump($listTagsReady);
+                                foreach ($listTagsReady as $id => $label)
                                     echo "<option value='$id'>$label</option>";
                             ?>
                             </select></dd>
