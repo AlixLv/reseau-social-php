@@ -53,7 +53,8 @@
                  ?>
                 
                 <?php 
-                include 'wall-post.php';
+                include "wall-post.php";
+                // include "wall-follow.php";
                 ?>
 
             <aside>
@@ -82,6 +83,11 @@
                         </dl>
                         <input type='submit'>
                      </form>    
+                </div>
+                <div id="follow">
+                    <form action="wall-follow.php?user_id=<?php echo $userId ?>" method="post">
+                        <button type="submit" name="follow">Follow</button>
+                    </form>
                 </div>
                 <?php while ($post = $postData->fetch_assoc())
                 {
