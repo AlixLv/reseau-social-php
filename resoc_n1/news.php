@@ -21,7 +21,7 @@
             </aside>
             <main>
                 <?php
-                include 'database-connection.php';
+                include '../resoc_n1/utilities.php';
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,

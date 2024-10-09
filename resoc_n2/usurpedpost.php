@@ -25,7 +25,7 @@
                     /**
                      * BD
                      */
-                    include '../resoc_n1/database-connection.php';
+                    include '../resoc_n1/utilities.php';
                     /**
                      * Récupération de la liste des auteurs
                      */

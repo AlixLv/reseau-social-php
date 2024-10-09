@@ -13,7 +13,7 @@
 
         <?php
 
-        include 'database-connection.php';
+        include '../resoc_n1/utilities.php';
         ?>
         <div id="wrapper" class='admin'>
             <aside>

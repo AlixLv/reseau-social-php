@@ -16,7 +16,7 @@
             $userId =intval($_GET['user_id']);
             ?>
             <?php
-            include 'database-connection.php';
+            include '../resoc_n1/utilities.php';
             $mysqli = dataBaseConnexion();
             ?>
     
@@ -55,7 +55,6 @@
                  ?>
                 
                 <?php 
-                include "utilities.php";
                 include "wall-post.php";
                 // include "wall-follow.php";
                 ?>

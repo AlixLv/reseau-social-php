@@ -1,4 +1,6 @@
 <?php
+$mysqli = dataBaseConnexion();
+
 $lesInformations = $mysqli->query($laQuestionEnSql);
 if ( ! $lesInformations)
 {

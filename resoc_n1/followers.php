@@ -24,7 +24,7 @@
             <main class='contacts'>
                 <?php
                 $userId = intval($_GET['user_id']);
-                include 'database-connection.php';
+                include '../resoc_n1/utilities.php';
                 $laQuestionEnSql = "
                     SELECT users.*
                     FROM followers

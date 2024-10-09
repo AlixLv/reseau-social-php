@@ -16,7 +16,7 @@
             $userId = intval($_GET['user_id']);
             ?>
             <?php
-            include 'database-connection.php';
+            include '../resoc_n1/utilities.php';
             ?>
 
             <aside>

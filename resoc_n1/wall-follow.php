@@ -1,7 +1,6 @@
 <?php 
     session_start();
-    include '../resoc_n1/database-connection.php';
-    include "utilities.php";
+    include '../resoc_n1/utilities.php';
     $mysqli = dataBaseConnexion();
 
     $wall_id = $_GET["user_id"];

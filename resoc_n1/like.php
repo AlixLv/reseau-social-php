@@ -1,8 +1,9 @@
 <?php 
     session_start();
-    include  'database-connection.php';
+    include  'utilities.php';
     $mysqli = dataBaseConnexion();
     $session_id = $_SESSION["connected_id"];
+    $wall_user_id = $_POST["wall_user_id"];
 
     $post_id = $_POST["post_id"];
 
@@ -19,6 +20,6 @@
         WHERE user_id = " . $session_id . " 
         AND post_id = ". $post_id);
     }
-    header("Location: ./wall.php?user_id=" . $_GET['user_id']);
+    header("Location: ./wall.php?user_id=" . $wall_user_id);
 
 ?>
