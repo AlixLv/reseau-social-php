@@ -11,11 +11,13 @@
     AND post_id =" . $post_id);
 
     if ($checkedIfLikedQuery->num_rows == 0) {
-        $likedQuery = "INSERT INTO likes
+        $likedQuery = $mysqli->query("INSERT INTO likes
         (id, user_id, post_id)
-        VALUES (NULL, " . $session_id . ", ". $post_id .")";
-
-        $ok = $mysqli->query($likedQuery);
+        VALUES (NULL, " . $session_id . ", ". $post_id .")");
+    } else {
+        $dislikedQuery = $mysqli->query("DELETE FROM likes
+        WHERE user_id = " . $session_id . " 
+        AND post_id = ". $post_id);
     }
     header("Location: ./wall.php?user_id=" . $_GET['user_id']);
 
