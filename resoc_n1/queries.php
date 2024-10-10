@@ -22,4 +22,5 @@ function getFeedPosts($userId) {
                     ORDER BY posts.created DESC";
 }
 
+
 ?>

@@ -3,7 +3,7 @@
     <nav id="menu">
         <a href="../resoc_n1/news.php">Actualités</a>
         <a href="../resoc_n1/wall.php?user_id=5">Mur</a>
-        <a href="../../resoc_n1/feed/feed-display.php">Flux</a>
+        <a href="../resoc_n1/feed/feed-display.php">Flux</a>
         <a href="../resoc_n1/tags.php?tag_id=1">Mots-clés</a>
     </nav>
     <nav id="user">
