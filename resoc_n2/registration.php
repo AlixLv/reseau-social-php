@@ -30,6 +30,7 @@
                         $new_passwd = $_POST['motpasse'];
 
                         include '../resoc_n1/utilities.php';
+                        $mysqli = dataBaseConnexion();
 
                         $new_email = $mysqli->real_escape_string($new_email);
                         $new_alias = $mysqli->real_escape_string($new_alias);

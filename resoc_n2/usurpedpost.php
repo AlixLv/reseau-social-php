@@ -26,6 +26,7 @@
                      * BD
                      */
                     include '../resoc_n1/utilities.php';
+                    $mysqli = dataBaseConnexion();
                     /**
                      * Récupération de la liste des auteurs
                      */
@@ -50,15 +51,13 @@
                         $postContent = $mysqli->real_escape_string($postContent);
 
                         $lInstructionSql = "INSERT INTO posts "
-                                . "(id, user_id, content, created, permalink, post_id) "
+                                . "(id, user_id, content, created, parent_id) "
                                 . "VALUES (NULL, "
                                 . $authorId . ", "
                                 . "'" . $postContent . "', "
                                 . "NOW(), "
-                                . "'', "
-                                . "NULL);"
-                                ;
-                        echo $lInstructionSql;
+                                . "NULL);";
+                        
 
                         $ok = $mysqli->query($lInstructionSql);
                         if ( ! $ok)

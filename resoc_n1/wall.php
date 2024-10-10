@@ -55,7 +55,14 @@
                  ?>
                 
                 <?php 
-                include "wall-post.php";
+                    $postEnCours = isset($_POST['content']);
+
+                    if ($postEnCours){
+                
+                        insertPost();
+                
+                    header("Location: ./wall.php?user_id=" . $userId);
+                    }
                 // include "wall-follow.php";
                 ?>
 
@@ -70,7 +77,7 @@
             </aside>
             <main>
                 <div id="new_post">
-                  <form action="wall-post.php?user_id=<?php echo $userId ?>"  method="post">
+                  <form action="wall.php?user_id=<?php echo $userId ?>"  method="post">
                       <dl>  
                             <dt><label for='content'>Message: </label></dt>
                             <dd><input type='textarea'name='content'></dd>
@@ -107,7 +114,8 @@
 
                     ?>                
                         <?php 
-                        include 'html-structure.php'
+                        renderPost($post);
+                        // include 'html-structure.php'
                         ?>
                 <?php } ?>
             </main>

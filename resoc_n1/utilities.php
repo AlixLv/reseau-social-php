@@ -28,6 +28,72 @@ function checkFollower($followedUser, $followingUser) {
     }
 }
 
+function renderPost($postInfo) {
+    
+    echo "<article>";
+    echo "    <h3>";
+    echo "        <time>" . $postInfo['created'] . "</time>";
+    echo "    </h3>";
+    echo "    <address><a href='wall.php?user_id=" . $postInfo['user_id'] . "'>Par " . $postInfo['author_name'] . "</a></address>";
+    echo "    <div><p>" . $postInfo['content'] . "</p></div>";
+    echo "    <footer>";
+    echo "        <form action='like.php' method='post'>";
+    if (isset($_GET["user_id"])) {
+        echo "            <input type='hidden' name='wall_user_id' value='" . $_GET['user_id'] . "'>";
+    }
+    $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[REQUEST_URI]";
+    // var_dump($actual_link); // Commented out to avoid output
+    echo "            <input type='hidden' name='post_id' value='" . $postInfo['post_id'] . "'>";
+    echo "            <button type='submit' name='like'>" . "♥ " . $postInfo['like_number'] . "</button>";
+    echo "        </form>";
+    $tags = explode(',', $postInfo['taglist']);
+    foreach ($tags as $tag) {
+        echo "<a href=''>" . $tag . "</a>";
+    }
+    echo "    </footer>";
+    echo "</article>";
 
+}
+
+function insertPost(){
+    $mysqli = dataBaseConnexion();
+    $id = $_GET['user_id'];
+
+    $post_content = $_POST['content'];
+
+    $insererPostDansTable = "INSERT INTO posts
+    (id, user_id, content, created)
+    VALUES (NULL, " . $id .", '" . $post_content ."', NOW())";
+    
+    $mysqli->query($insererPostDansTable);
+    
+    $myId = $mysqli->insert_id;
+    
+    $selectedTag = $_POST['tag'];
+
+    $myInsertPostTagQuery = "INSERT INTO posts_tags
+    (id, post_id, tag_id)
+    VALUES (NULL, " . $myId . ", ". $selectedTag .")";
+
+    $mysqli->query($myInsertPostTagQuery);
+}
+
+function getTags() {
+    $mysqli = dataBaseConnexion();
+    $listTags = [];
+    $laQueryEnSQL = "SELECT * FROM tags";
+    $laReponseEnSQL = $mysqli->query($laQueryEnSQL);
+  
+    if ( ! $laReponseEnSQL)
+    {
+        echo("Échec de la requete : " . $mysqli->error);
+        exit();
+    }
+    while ($tag = $laReponseEnSQL->fetch_assoc())
+    {
+        $listTags[$tag['id']] = $tag['label'];
+    }
+    return $listTags;
+}
 
 ?>
