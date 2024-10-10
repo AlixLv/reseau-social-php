@@ -8,7 +8,7 @@
     </head>
     <body>
     <?php 
-        include '../resoc_n1/header.php';
+        include '../resoc_n1/main/header.php';
         ?>
 
         <div id="wrapper" >

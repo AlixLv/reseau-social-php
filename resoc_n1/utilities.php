@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 function dataBaseConnexion(){
     $mysqli = new mysqli("localhost", "root", "", "socialnetwork");

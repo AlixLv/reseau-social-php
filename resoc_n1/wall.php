@@ -8,7 +8,7 @@
     </head>
     <body>
     <?php 
-        include 'header.php';
+        include '../resoc_n1/main/header.php';
     ?>
         <div id="wrapper">
             <?php
@@ -58,10 +58,8 @@
                     $postEnCours = isset($_POST['content']);
 
                     if ($postEnCours){
-                
                         insertPost();
-                
-                    header("Location: ./wall.php?user_id=" . $userId);
+                        header("Location: ./wall.php?user_id=" . $userId);
                     }
                 // include "wall-follow.php";
                 ?>
