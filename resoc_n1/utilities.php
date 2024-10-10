@@ -96,4 +96,8 @@ function getTags() {
     return $listTags;
 }
 
+function isLoggedIn() {
+    return isset($_SESSION["connected_id"]) ? true : false;
+}
+
 ?>

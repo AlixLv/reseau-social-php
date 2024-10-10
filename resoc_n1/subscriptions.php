@@ -25,27 +25,34 @@
             </aside>
             <main class='contacts'>
                 <?php
-                $userId = intval($_GET['user_id']);
-                include '../resoc_n1/utilities.php';
-                $laQuestionEnSql = "
-                    SELECT users.* 
-                    FROM followers 
-                    LEFT JOIN users ON users.id=followers.followed_user_id 
-                    WHERE followers.following_user_id='$userId'
-                    GROUP BY users.id
-                    ";
-                include 'query-response.php';
-                while ($subscriber = $lesInformations->fetch_assoc())
-                {
+                    include '../resoc_n1/utilities.php';
+                    // session_destroy();
+                    if (isLoggedIn()) {
                 
-
+                        $userId = intval($_GET['user_id']); 
+                        $laQuestionEnSql = "
+                            SELECT users.* 
+                            FROM followers 
+                            LEFT JOIN users ON users.id=followers.followed_user_id 
+                            WHERE followers.following_user_id='$userId'
+                            GROUP BY users.id
+                            ";
+                        include 'query-response.php';
+                        while ($subscriber = $lesInformations->fetch_assoc())
+                        {
+                            echo "<article>";
+                            echo "<img src='user.jpg' alt='blason'/>";
+                            echo "<h3>" . $subscriber['alias'] . "</h3>";
+                            echo "<p>Id: " . $subscriber['id'] . "</p>";            
+                            echo "</article>";
+                        }
+                    } 
+                    else {
+                        header("Location: ../resoc_n2/login.php");
+                    }
                 ?>
-                <article>
-                    <img src="user.jpg" alt="blason"/>
-                    <h3><?php echo $subscriber['alias'] ?></h3>
-                    <p><?php echo "Id: " . $subscriber['id'] ?></p>                    
-                </article>
-                <?php } ?>
+
+
             </main>
         </div>
     </body>
