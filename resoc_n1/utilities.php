@@ -41,8 +41,7 @@ function renderPost($postInfo) {
     if (isset($_GET["user_id"])) {
         echo "            <input type='hidden' name='wall_user_id' value='" . $_GET['user_id'] . "'>";
     }
-    $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[REQUEST_URI]";
-    // var_dump($actual_link); // Commented out to avoid output
+    
     echo "            <input type='hidden' name='post_id' value='" . $postInfo['post_id'] . "'>";
     echo "            <button type='submit' name='like'>" . "♥ " . $postInfo['like_number'] . "</button>";
     echo "        </form>";
