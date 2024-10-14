@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 function dataBaseConnexion(){
@@ -11,6 +12,7 @@ function dataBaseConnexion(){
             echo "</article>";
             exit();
         }
+    
     return $mysqli;
 }
 

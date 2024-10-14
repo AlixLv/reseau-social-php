@@ -1,14 +1,14 @@
 <?php 
-    include '../../resoc_n1/main/main-utilities.php';
-    include '../../resoc_n1/main/header.php';
-    include '../../resoc_n1/queries.php';
+    include '../main/main-utilities.php';
+    include '../main/header.php';
+    include '../queries.php';
     
-
     $mysqli = dataBaseConnexion();
     $userId = intval($_SESSION['connected_id']);
     $userIdInfos = getQueryResponse(getUserIdInfos($userId), $mysqli);
     $user = $userIdInfos->fetch_assoc();
     $feedPosts = getQueryResponse(getFeedPosts($userId), $mysqli);
+    $end_url = getUrl($_SERVER['HTTPS'], $_SERVER['REQUEST_URI']);
 ?>
 
 

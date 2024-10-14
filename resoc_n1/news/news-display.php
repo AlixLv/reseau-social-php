@@ -9,6 +9,11 @@
     <body>
     <?php 
         include '../main/header.php';
+        include '../main/main-utilities.php';
+        
+        $mysqli = dataBaseConnexion();
+        $end_url = getUrl($_SERVER['HTTPS'], $_SERVER['REQUEST_URI']);
+        
     ?>
         <div id="wrapper">
             <aside>
@@ -23,13 +28,15 @@
                 <?php
                 include 'news-query.php';
                 $postDataAnswer = getPostData($mysqli);
+                var_dump($postDataAnswer);
                 while ($postDataRendering = $postDataAnswer->fetch_assoc())
                 {
                 
                     ?>
                     <?php 
-                    
-                        // $newsPost = renderPost();
+                        echo "coucou";
+                        $newsPost = renderPost($postDataRendering, $end_url);
+                        var_dump($newsPost);
                         ?>
                     <?php
                 }

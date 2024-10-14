@@ -4,16 +4,16 @@
         <meta charset="utf-8">
         <title>ReSoC - Administration</title> 
         <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
         <?php 
-        include '../resoc_n1/main/header.php';
+        include '../main/header.php';
         ?>
 
         <?php
 
-        include '../resoc_n1/main/main-utilities.php';
+        include '../main/main-utilities.php';
         ?>
         <div id="wrapper" class='admin'>
             <aside>

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>ReSoC - Mur</title> 
         <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
     <?php 
@@ -31,9 +31,9 @@
         }
         //
 
-        include '../resoc_n1/main/header.php';
-        include '../resoc_n1/main/main-utilities.php';
-        include '../resoc_n1/wall-queries.php';
+        include '../main/header.php';
+        include '../main/main-utilities.php';
+        include '../wall-queries.php';
         
         //déclaration des variables globales (à mettre dans un fichier 'Controller')
         $mysqli = dataBaseConnexion();
@@ -70,7 +70,7 @@
     ?>
         <div id="wrapper">
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="../images/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $wall_user_id ?>
@@ -89,7 +89,6 @@
                             <?php
                                 //Menu déroulant "Tags"
                                 $listTagsReady = getTags();
-                                var_dump($listTagsReady);
                                 foreach ($listTagsReady as $id => $label)
                                     echo "<option value='$id'>$label</option>";
                             ?>

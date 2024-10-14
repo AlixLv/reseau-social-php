@@ -1,6 +1,5 @@
 <?php 
-include '../../resoc_n1/feed/feed-controller.php'; 
-include '../../resoc_n1/html-structure.php';
+include 'feed-controller.php'; 
 ?>
 <!doctype html>
 <html lang="fr">
@@ -13,7 +12,7 @@ include '../../resoc_n1/html-structure.php';
     <body>
         <div id="wrapper">
             <aside>
-            <img src="../../resoc_n1/user.jpg" alt="Portrait de l'utilisatrice"/>
+            <img src="../images/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message des utilisatrices
@@ -26,7 +25,7 @@ include '../../resoc_n1/html-structure.php';
                 <?php
                 while ($post = $feedPosts->fetch_assoc())
                 {
-                    renderPost($post);
+                    renderPost($post, $end_url);
                 } 
                 ?>
             </main>

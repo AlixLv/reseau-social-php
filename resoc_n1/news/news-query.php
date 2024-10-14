@@ -1,8 +1,8 @@
 <?php
-    include '../main/main-utilities.php';
-    $mysqli = dataBaseConnexion();
+    // include '../main/main-utilities.php';
+    // $mysqli = dataBaseConnexion();
 
-    function getPostData($mysqli){
+    function getPostData($requete){
     $getPostDataQuery = "
     SELECT posts.content,
     posts.created,
@@ -21,6 +21,6 @@
     LIMIT 5
     ";
   
-    return $postDataAnswer = $mysqli->query($getPostDataQuery);
+    return $requete->query($getPostDataQuery);
     }
 ?>

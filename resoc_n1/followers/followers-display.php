@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>ReSoC - Mes abonnés </title> 
         <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
     <?php 
