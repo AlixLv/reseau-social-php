@@ -32,7 +32,7 @@
                      */
                     $listAuteurs = [];
                     $laQuestionEnSql = "SELECT * FROM users";
-                    include '../resoc_n1/query-response.php';
+
                     while ($user = $lesInformations->fetch_assoc())
                     {
                         $listAuteurs[$user['id']] = $user['alias'];

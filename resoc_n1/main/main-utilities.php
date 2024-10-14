@@ -50,7 +50,7 @@ function renderPost($postInfo, $targetUrl) {
     echo "    <h3>";
     echo "        <time>" . $postInfo['created'] . "</time>";
     echo "    </h3>";
-    echo "    <address><a href='wall.php?user_id=" . $postInfo['user_id'] . "'>Par " . $postInfo['author_name'] . "</a></address>";
+    echo "    <address><a href='../wall/wall-display.php?user_id=" . $postInfo['user_id'] . "'>Par " . $postInfo['author_name'] . "</a></address>";
     echo "    <div><p>" . $postInfo['content'] . "</p></div>";
     echo "    <footer>";
     echo "        <form action='./" . $targetUrl . "' method='post'>";

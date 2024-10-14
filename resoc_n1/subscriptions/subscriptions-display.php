@@ -38,7 +38,6 @@
                             WHERE followers.following_user_id='$userId'
                             GROUP BY users.id
                             ";
-                        include 'query-response.php';
                         while ($subscriber = $lesInformations->fetch_assoc())
                         {
                             echo "<article>";

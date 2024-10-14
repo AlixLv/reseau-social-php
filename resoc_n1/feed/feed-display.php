@@ -6,7 +6,7 @@ include 'feed-controller.php';
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Flux</title>         
-        <meta name="author" content="Julien Falconnet">
+        <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
         <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>

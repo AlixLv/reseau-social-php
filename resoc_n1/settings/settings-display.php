@@ -39,7 +39,6 @@
                     WHERE users.id = " . $userId ."  
                     GROUP BY users.id
                     ";
-                include 'query-response.php';
                 $user = $lesInformations->fetch_assoc();
 
                 ?>                

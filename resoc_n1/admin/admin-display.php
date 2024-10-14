@@ -21,7 +21,6 @@
                 <?php
           
                 $laQuestionEnSql = "SELECT * FROM `tags` LIMIT 50";
-                include 'query-response.php';
 
                 while ($tag = $lesInformations->fetch_assoc())
                 {

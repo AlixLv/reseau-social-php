@@ -2,20 +2,21 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>ReSoC - Les message par mot-clé</title> 
+        <title>ReSoC - Les messages par mots-clés</title> 
         <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
         <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
     <?php 
-        include '../resoc_n1/main/header.php';
+        include '../main/header.php';            
+        include '../main/main-utilities.php';
     ?>
         <div id="wrapper">
             <?php
             $tagId = intval($_GET['tag_id']);
             ?>
             <?php
-            include '../resoc_n1/main/main-utilities.php';
+
             $mysqli = dataBaseConnexion();
             ?>
 
@@ -25,7 +26,7 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $tag = $lesInformations->fetch_assoc();
                 ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="../images/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les derniers messages comportant
@@ -55,13 +56,11 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-                include 'query-response.php';
 
                 while ($post = $lesInformations->fetch_assoc())
                 {
                     ?>                
                     <?php 
-                        include 'html-structure.php'
                         ?>
                 <?php } ?>
 
