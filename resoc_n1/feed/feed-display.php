@@ -1,5 +1,14 @@
 <?php 
-include 'feed-controller.php'; 
+include 'feed-controller.php';
+
+//Monitoring des requêtes POST en cours
+//Bouton "Like"
+    $likeInProgress = isset($_POST['like']);
+    var_dump($likeInProgress);
+    if ($likeInProgress) {
+        $likedPost = $_POST['post_id'] ;
+        likePost($likedPost, $connected_id, $mysqli);
+    } 
 ?>
 <!doctype html>
 <html lang="fr">
@@ -26,7 +35,10 @@ include 'feed-controller.php';
                 while ($post = $feedPosts->fetch_assoc())
                 {
                     renderPost($post, $end_url);
+
                 } 
+
+
                 ?>
             </main>
         </div>

@@ -8,7 +8,8 @@
     $userIdInfos = getQueryResponse(getUserIdInfos($userId), $mysqli);
     $user = $userIdInfos->fetch_assoc();
     $feedPosts = getQueryResponse(getFeedPosts($userId), $mysqli);
-    $end_url = getUrl($_SERVER['HTTPS'], $_SERVER['REQUEST_URI']);
+    $end_url = getUrl($_SERVER['REQUEST_URI']);
+    $connected_id = $_SESSION['connected_id'];
 ?>
 
 

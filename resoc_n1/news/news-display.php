@@ -12,12 +12,21 @@
         include '../main/main-utilities.php';
         
         $mysqli = dataBaseConnexion();
-        $end_url = getUrl($_SERVER['HTTPS'], $_SERVER['REQUEST_URI']);
+        $end_url = getUrl($_SERVER['REQUEST_URI']);
+        $connected_id = $_SESSION['connected_id'];
+
+//Monitoring des requêtes POST en cours
+//Bouton "Like"
+    $likeInProgress = isset($_POST['like']);
+    if ($likeInProgress) {
+        $likedPost = $_POST['post_id'] ;
+        likePost($likedPost, $connected_id, $mysqli);
+    } 
         
     ?>
         <div id="wrapper">
             <aside>
-                <img src="../user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="../images/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les derniers messages de
@@ -28,7 +37,7 @@
                 <?php
                 include 'news-query.php';
                 $postDataAnswer = getPostData($mysqli);
-                var_dump($postDataAnswer);
+
                 while ($postDataRendering = $postDataAnswer->fetch_assoc())
                 {
                 

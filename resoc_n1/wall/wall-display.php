@@ -13,9 +13,10 @@
 
         //Monitoring des requêtes POST en cours
         //Bouton "Like"
-        $likedPost = $_POST['post_id'] ;
+       
         $likeInProgress = isset($_POST['like']);
         if ($likeInProgress) {
+            $likedPost = $_POST['post_id'] ;
             likePost($likedPost, $connected_id, $mysqli);
         }
 
@@ -28,6 +29,7 @@
         //Bouton "Nouveau post"
         $postInProgress = isset($_POST['content']);
         if ($postInProgress){
+            var_dump($_POST);
             insertPost();
             header("Location: $end_url");
         }

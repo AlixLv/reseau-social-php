@@ -2,31 +2,29 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>ReSoC - Les messages par mots-clés</title> 
+        <title>ReSoC - Les messages par mot-clé</title> 
         <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
         <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
-    <?php 
-        include 'tags-queries.php';
-        include '../main/header.php';            
-        include '../main/main-utilities.php';
-    ?>
+        <?php
+            include 'tags-controller.php';    
+            $tagsId = $mysqli->query(getTagsId($tagId));
+            $tag = $tagsId->fetch_assoc();
+        
+    //Monitoring des requêtes POST en cours
+    //Bouton "Like"
+       
+        $likeInProgress = isset($_POST['like']);
+        if ($likeInProgress) {
+            $likedPost = $_POST['post_id'] ;
+            likePost($likedPost, $connected_id, $mysqli);
+        }
+        ?>
         <div id="wrapper">
-            <?php
-            $tagId = intval($_GET['tag_id']);
-            ?>
-            <?php
-
-            $mysqli = dataBaseConnexion();
-            ?>
 
             <aside>
-                <?php
-                $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                $tag = $lesInformations->fetch_assoc();
-                ?>
+
                 <img src="../images/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
@@ -39,33 +37,17 @@
             </aside>
             <main>
                 <?php
-                $laQuestionEnSql = "
-                    SELECT posts.content,
-                    posts.created,
-                    posts.id as post_id,
-                    users.alias as author_name,  
-                    count(likes.id) as like_number,  
-                    users.id as user_id,
-                    GROUP_CONCAT(DISTINCT tags.label) AS taglist 
-                    FROM posts_tags as filter 
-                    JOIN posts ON posts.id=filter.post_id
-                    JOIN users ON users.id=posts.user_id
-                    LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
-                    LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
-                    LEFT JOIN likes      ON likes.post_id  = posts.id 
-                    WHERE filter.tag_id = '$tagId' 
-                    GROUP BY posts.id
-                    ORDER BY posts.created DESC  
-                    ";
-
-                while ($post = $lesInformations->fetch_assoc())
+                $tagsData = $mysqli->query(getPostsByTag($tagId));
+                
+                
+                while ($gettingTagsData = $tagsData->fetch_assoc())
                 {
-                    ?>                
+                    ?>  
                     <?php 
-                        ?>
+                    var_dump($gettingTagsData['like_number']);             
+                       renderPost($gettingTagsData, $end_url);
+                      ?>
                 <?php } ?>
-
-
             </main>
         </div>
     </body>

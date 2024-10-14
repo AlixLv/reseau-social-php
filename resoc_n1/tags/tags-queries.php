@@ -1,5 +1,10 @@
 <?php 
+function getTagsId($tagId){
+    return "SELECT * FROM tags WHERE id= '$tagId' ";
+} 
 
+
+// A MODIFIER POUR COMPTER LES LIKES ???
 function getPostsByTag($tag){
     return "SELECT posts.content,
         posts.created,

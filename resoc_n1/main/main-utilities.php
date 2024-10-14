@@ -45,7 +45,6 @@ function checkFollower($followedUser, $followingUser) {
 }
 
 function renderPost($postInfo, $targetUrl) {
-
     echo "<article>";
     echo "    <h3>";
     echo "        <time>" . $postInfo['created'] . "</time>";
@@ -139,9 +138,10 @@ function likePost($post_id, $session_id, $db_connexion) {
     }
 }
 
-function getUrl($https, $request) {
-    $url = (empty($https) ? 'http' : 'https') . "://$request";
-    $cropped_url = end(explode('/', $url));
+function getUrl($request) {
+    $url =  "http://". $request;
+    $url_array = explode('/', $url);
+    $cropped_url = end($url_array);   
     return $cropped_url;
 }
 ?>

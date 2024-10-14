@@ -8,7 +8,9 @@
     </head>
     <body>
     <?php 
-        include '../resoc_n1/main/header.php';
+        include '../../resoc_n1/main/header.php';
+        include '../../resoc_n1/main/main-utilities.php';
+        $mysqli = dataBaseConnexion();
         ?>
 
         <div id="wrapper" >
@@ -36,10 +38,6 @@
                         $emailAVerifier = $_POST['email'];
                         $passwdAVerifier = $_POST['motpasse'];
 
-
-                        //Etape 3 : Ouvrir une connexion avec la base de donnée.
-                        include '../resoc_n1/main/main-utilities.php';
-                        $mysqli = dataBaseConnexion();
                         //Etape 4 : Petite sécurité
                         // pour éviter les injection sql : https://www.w3schools.com/sql/sql_injection.asp
                         $emailAVerifier = $mysqli->real_escape_string($emailAVerifier);
@@ -69,7 +67,7 @@
                         }
                     }
                     ?>                     
-                    <form action="login.php" method="post">
+                    <form action="../login/login-display.php" method="post">
                         <input type='hidden'name='???' value='achanger'>
                         <dl>
                             <dt><label for='email'>E-Mail</label></dt>
