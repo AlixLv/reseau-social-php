@@ -8,6 +8,7 @@
     </head>
     <body>
     <?php 
+        include 'tags-queries.php';
         include '../main/header.php';            
         include '../main/main-utilities.php';
     ?>
