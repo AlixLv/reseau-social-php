@@ -34,9 +34,7 @@
                 
                     ?>
                     <?php 
-                        echo "coucou";
-                        $newsPost = renderPost($postDataRendering, $end_url);
-                        var_dump($newsPost);
+                        renderPost($postDataRendering, $end_url);
                         ?>
                     <?php
                 }

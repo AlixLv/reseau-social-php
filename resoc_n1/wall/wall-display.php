@@ -8,43 +8,10 @@
     </head>
     <body>
     <?php 
-        // fonction à bouger dans "wall queries" avant de push   
-        function getUserName($request, $id) {
-            $userInfo = $request->query("SELECT * FROM users WHERE id= '$id' ");
-            $userName = $userInfo->fetch_assoc()['alias'];
-            return $userName;
-        }
 
-        function getPostData($author_id) {
-            return "SELECT posts.content, posts.created, users.alias as author_name, 
-                    users.id as user_id,
-                    posts.id as post_id,
-                    COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
-                    FROM posts
-                    JOIN users ON  users.id=posts.user_id
-                    LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
-                    LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
-                    LEFT JOIN likes      ON likes.post_id  = posts.id 
-                    WHERE posts.user_id='$author_id' 
-                    GROUP BY posts.id
-                    ORDER BY posts.created DESC";
-        }
-        //
-
-        include '../main/header.php';
-        include '../main/main-utilities.php';
-        include '../wall-queries.php';
-        
-        //déclaration des variables globales (à mettre dans un fichier 'Controller')
-        $mysqli = dataBaseConnexion();
-        $connected_id = $_SESSION['connected_id'];
-        $userId =intval($_GET['user_id']);
-        $end_url = getUrl($_SERVER['HTTPS'], $_SERVER['REQUEST_URI']);
-        $wall_user_id = getUserName($mysqli, $userId);
-
+        include 'wall-controller.php';
 
         //Monitoring des requêtes POST en cours
-        
         //Bouton "Like"
         $likedPost = $_POST['post_id'] ;
         $likeInProgress = isset($_POST['like']);
@@ -62,7 +29,7 @@
         $postInProgress = isset($_POST['content']);
         if ($postInProgress){
             insertPost();
-            header("Location: ./wall.php?user_id=" . $userId);
+            header("Location: $end_url");
         }
         
         //Récupération des informations des posts de l'utilisateur
