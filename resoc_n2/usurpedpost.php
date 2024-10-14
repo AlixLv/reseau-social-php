@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Post d'usurpateur</title> 
-        <meta name="author" content="Julien Falconnet">
+        <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
@@ -25,7 +25,7 @@
                     /**
                      * BD
                      */
-                    include '../resoc_n1/utilities.php';
+                    include '../resoc_n1/main/main-utilities.php';
                     $mysqli = dataBaseConnexion();
                     /**
                      * Récupération de la liste des auteurs

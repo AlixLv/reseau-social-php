@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Mes abonnements</title> 
-        <meta name="author" content="Julien Falconnet">
+        <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
@@ -25,9 +25,10 @@
             </aside>
             <main class='contacts'>
                 <?php
-                    include '../resoc_n1/utilities.php';
-                    // session_destroy();
-                    if (isLoggedIn()) {
+                    include '../resoc_n1/main/main-utilities.php';
+                    $connected_id = $_SESSION['connected_id'];
+                    echo $connected_id;
+                    if (isLoggedIn($connected_id)) {
                 
                         $userId = intval($_GET['user_id']); 
                         $laQuestionEnSql = "

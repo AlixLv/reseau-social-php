@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Les message par mot-clé</title> 
-        <meta name="author" content="Julien Falconnet">
+        <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
@@ -15,7 +15,7 @@
             $tagId = intval($_GET['tag_id']);
             ?>
             <?php
-            include '../resoc_n1/utilities.php';
+            include '../resoc_n1/main/main-utilities.php';
             $mysqli = dataBaseConnexion();
             ?>
 

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Inscription</title> 
-        <meta name="author" content="Julien Falconnet">
+        <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
@@ -29,7 +29,7 @@
                         $new_alias = $_POST['pseudo'];
                         $new_passwd = $_POST['motpasse'];
 
-                        include '../resoc_n1/utilities.php';
+                        include '../resoc_n1/main/main-utilities.php';
                         $mysqli = dataBaseConnexion();
 
                         $new_email = $mysqli->real_escape_string($new_email);

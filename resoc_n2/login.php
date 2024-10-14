@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Connexion</title> 
-        <meta name="author" content="Julien Falconnet">
+        <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
@@ -38,7 +38,7 @@
 
 
                         //Etape 3 : Ouvrir une connexion avec la base de donnée.
-                        include '../resoc_n1/utilities.php';
+                        include '../resoc_n1/main/main-utilities.php';
                         $mysqli = dataBaseConnexion();
                         //Etape 4 : Petite sécurité
                         // pour éviter les injection sql : https://www.w3schools.com/sql/sql_injection.asp

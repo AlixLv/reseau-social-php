@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Flux</title>         
-        <meta name="author" content="Julien Falconnet">
+        <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
@@ -16,7 +16,7 @@
             $userId = intval($_GET['user_id']);
             ?>
             <?php
-            include '../resoc_n1/utilities.php';
+            include '../resoc_n1/main/main-utilities.php';
             ?>
 
             <aside>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Paramètres</title> 
-        <meta name="author" content="Julien Falconnet">
+        <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
@@ -26,7 +26,7 @@
                 <?php
                 $userId = intval($_GET['user_id']);
 
-                include '../resoc_n1/utilities.php';
+                include '../resoc_n1/main/main-utilities.php';
                 $laQuestionEnSql = "
                     SELECT users.*, 
                     count(DISTINCT posts.id) as totalpost, 
