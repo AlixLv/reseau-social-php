@@ -1,6 +1,6 @@
 <?php 
     include '../main/header.php';
-    include '../main/main-utilities.php';
+    include_once '../main/main-utilities.php';
     include 'tags-queries.php';
     $tagId = intval($_GET['tag_id']);
     $mysqli = dataBaseConnexion();

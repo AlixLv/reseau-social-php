@@ -29,7 +29,7 @@
                         $new_alias = $_POST['pseudo'];
                         $new_passwd = $_POST['motpasse'];
 
-                        include '../main/main-utilities.php';
+                        include_once '../main/main-utilities.php';
                         $mysqli = dataBaseConnexion();
 
                         $new_email = $mysqli->real_escape_string($new_email);

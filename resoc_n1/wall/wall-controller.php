@@ -2,7 +2,7 @@
 
 include 'wall-queries.php';
 include '../main/header.php';
-include '../main/main-utilities.php';
+include_once '../main/main-utilities.php';
 
 $mysqli = dataBaseConnexion();
 if (isset($_SESSION['connected_id'])) {

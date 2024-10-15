@@ -1,6 +1,6 @@
 <?php 
         include '../main/header.php';
-        include '../main/main-utilities.php';
+        include_once '../main/main-utilities.php';
         include './admin-query.php';
 
         $mysqli = dataBaseConnexion();

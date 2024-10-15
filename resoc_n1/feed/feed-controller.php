@@ -1,5 +1,5 @@
 <?php 
-    include '../main/main-utilities.php';
+    include_once '../main/main-utilities.php';
     include '../main/header.php';
     include './feed-query.php';
     

@@ -2,6 +2,7 @@
 
 // session_start();
 // session_destroy();
+
 function dataBaseConnexion(){
     $mysqli = new mysqli("localhost", "root", "", "socialnetwork");
         if ($mysqli->connect_errno)
@@ -15,7 +16,6 @@ function dataBaseConnexion(){
     
     return $mysqli;
 }
-
 
 function getQueryResponse($sqlQuery, $mysqli) {
     $response = $mysqli->query($sqlQuery);
@@ -59,8 +59,6 @@ function renderPost($postInfo, $targetUrl) {
     echo "</article>";
 
 }
-
-
 
 function insertPost(){
     $mysqli = dataBaseConnexion();
@@ -115,7 +113,6 @@ function follow($db_connexion, $wall_id, $session_id) {
     }
 }
 
-
 function likePost($post_id, $session_id, $db_connexion) {
 
     $checkedIfLikedQuery = $db_connexion->query("SELECT * FROM likes
@@ -139,4 +136,6 @@ function getUrl($request) {
     $cropped_url = end($url_array);   
     return $cropped_url;
 }
+
+
 ?>

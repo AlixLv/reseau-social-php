@@ -22,10 +22,7 @@
                 <article>
                     <h2>Poster un message</h2>
                     <?php
-                    /**
-                     * BD
-                     */
-                    include '../main/main-utilities.php';
+                    include_once '../main/main-utilities.php';
                     $mysqli = dataBaseConnexion();
                     /**
                      * Récupération de la liste des auteurs

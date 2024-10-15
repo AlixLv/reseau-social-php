@@ -1,7 +1,7 @@
 <?php
     include '../main/header.php';
     include './subscriptions-query.php';
-    include '../main/main-utilities.php';
+    include_once '../main/main-utilities.php';
 
     $mysqli = dataBaseConnexion();
     $connected_id = $_SESSION['connected_id'];                
