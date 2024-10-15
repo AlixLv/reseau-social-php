@@ -1,14 +1,14 @@
 <?php 
 include 'feed-controller.php';
-
 //Monitoring des requêtes POST en cours
 //Bouton "Like"
-    $likeInProgress = isset($_POST['like']);
-    var_dump($likeInProgress);
-    if ($likeInProgress) {
-        $likedPost = $_POST['post_id'] ;
-        likePost($likedPost, $connected_id, $mysqli);
-    } 
+
+$likeInProgress = isset($_POST['like']);
+if ($likeInProgress) {
+    $likedPost = $_POST['post_id'] ;
+    likePost($likedPost, $connected_id, $mysqli);
+} 
+$feedPosts = getQueryResponse(getFeedPosts($userId), $mysqli);
 ?>
 <!doctype html>
 <html lang="fr">
