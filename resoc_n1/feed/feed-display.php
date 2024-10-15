@@ -9,6 +9,7 @@ if ($likeInProgress) {
     likePost($likedPost, $connected_id, $mysqli);
 } 
 $feedPosts = getQueryResponse(getFeedPosts($userId), $mysqli);
+
 ?>
 <!doctype html>
 <html lang="fr">

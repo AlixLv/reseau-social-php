@@ -1,7 +1,7 @@
 <?php
 
-session_start();
-
+// session_start();
+// session_destroy();
 function dataBaseConnexion(){
     $mysqli = new mysqli("localhost", "root", "", "socialnetwork");
         if ($mysqli->connect_errno)
@@ -16,9 +16,6 @@ function dataBaseConnexion(){
     return $mysqli;
 }
 
-function isLoggedIn($session_id) {
-    return isset($session_id) ? true : false;
-}
 
 function getQueryResponse($sqlQuery, $mysqli) {
     $response = $mysqli->query($sqlQuery);

@@ -1,3 +1,7 @@
+<?php
+include './followers-controller.php';
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -7,9 +11,6 @@
         <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
-    <?php 
-        include '../resoc_n1/main/header.php';
-    ?>
         <div id="wrapper">          
             <aside>
                 <img src = "../images/user.jpg" alt = "Portrait de l'utilisatrice"/>
@@ -23,21 +24,11 @@
             </aside>
             <main class='contacts'>
                 <?php
-                $userId = intval($_GET['user_id']);
-                include '../resoc_n1/main/main-utilities.php';
-                $laQuestionEnSql = "
-                    SELECT users.*
-                    FROM followers
-                    LEFT JOIN users ON users.id=followers.following_user_id
-                    WHERE followers.followed_user_id='$userId'
-                    GROUP BY users.id
-                    ";
-                
-                while ($subscriber = $lesInformations->fetch_assoc())
+                while ($subscriber = $followersData->fetch_assoc())
                 {
                 ?>
                 <article>
-                    <img src="user.jpg" alt="blason"/>
+                    <img src="../images/user.jpg" alt="blason"/>
                     <h3><?php echo $subscriber['alias'] ?></h3>
                     <p><?php echo "Id: " . $subscriber['id'] ?></p>
                 </article>

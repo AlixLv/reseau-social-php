@@ -1,3 +1,7 @@
+<?php 
+include './admin-controller.php';
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -7,29 +11,21 @@
         <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
-        <?php 
-        include '../main/header.php';
-        ?>
 
-        <?php
-
-        include '../main/main-utilities.php';
-        ?>
         <div id="wrapper" class='admin'>
             <aside>
                 <h2>Mots-clés</h2>
                 <?php
-          
-                $laQuestionEnSql = "SELECT * FROM `tags` LIMIT 50";
 
-                while ($tag = $lesInformations->fetch_assoc())
+
+                while ($tag = $tagsData->fetch_assoc())
                 {
                     ?>
                     <article>
                         <h3><?php echo "#" . $tag['label'] ?></h3>
                         <p><?php echo "id: " . $tag['id'] ?></p>
                         <nav>
-                            <a href=<?php echo "tags.php?tag_id=" . $tag['id'] ?>>Messages</a>
+                            <a href=<?php echo "../tags/tags-display.php?tag_id=" . $tag['id'] ?>>Messages</a>
                         </nav>
                     </article>
                 <?php } ?>
@@ -37,27 +33,19 @@
             <main>
                 <h2>Utilisatrices</h2>
                 <?php
-                $laQuestionEnSql = "SELECT * FROM `users` LIMIT 50";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
-                {
-                    echo("Échec de la requete : " . $mysqli->error);
-                    exit();
-                }
-
                 
-                while ($tag = $lesInformations->fetch_assoc())
+                while ($tag = $usersData->fetch_assoc())
                 {
                     ?>
                     <article>
                         <h3><?php echo $tag['alias'] ?></h3>
                         <p><?php echo $tag['id'] ?></p>
                         <nav>
-                            <a href=<?php echo "wall.php?user_id=" . $tag['id'] ?>>Mur</a>
-                            | <a href=<?php echo "feed.php?user_id=" . $tag['id'] ?>>Flux</a>
-                            | <a href=<?php echo "settings.php?user_id=" . $tag['id'] ?>>Paramètres</a>
-                            | <a href=<?php echo "followers.php?user_id=" . $tag['id'] ?>>Suiveurs</a>
-                            | <a href=<?php echo "subscriptions.php?user_id=" . $tag['id'] ?>>Abonnements</a>
+                            <a href=<?php echo "../wall/wall-display.php?user_id=" . $tag['id'] ?>>Mur</a>
+                            | <a href=<?php echo "../feed/feed-display.php?user_id=" . $tag['id'] ?>>Flux</a>
+                            | <a href=<?php echo "../settings/settings-display.php?user_id=" . $tag['id'] ?>>Paramètres</a>
+                            | <a href=<?php echo "../followers/followers-display.php?user_id=" . $tag['id'] ?>>Suiveurs</a>
+                            | <a href=<?php echo "../subscriptions/subscriptions-display.php?user_id=" . $tag['id'] ?>>Abonnements</a>
                         </nav>
                     </article>
                 <?php } ?>

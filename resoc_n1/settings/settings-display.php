@@ -1,3 +1,6 @@
+<?php 
+    include "./settings-controller.php";
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -7,9 +10,6 @@
         <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
-    <?php 
-        include '../resoc_n1/main/header.php';
-    ?>
         <div id="wrapper" class='profile'>
 
 
@@ -23,25 +23,6 @@
                 </section>
             </aside>
             <main>
-                <?php
-                $userId = intval($_GET['user_id']);
-
-                include '../resoc_n1/main/main-utilities.php';
-                $laQuestionEnSql = "
-                    SELECT users.*, 
-                    count(DISTINCT posts.id) as totalpost, 
-                    count(DISTINCT given.post_id) as totalgiven, 
-                    count(DISTINCT recieved.user_id) as totalrecieved 
-                    FROM users 
-                    LEFT JOIN posts ON posts.user_id=users.id 
-                    LEFT JOIN likes as given ON given.user_id=users.id 
-                    LEFT JOIN likes as recieved ON recieved.post_id=posts.id 
-                    WHERE users.id = " . $userId ."  
-                    GROUP BY users.id
-                    ";
-                $user = $lesInformations->fetch_assoc();
-
-                ?>                
                 <article class='parameters'>
                     <h3>Mes paramètres</h3>
                     <dl>

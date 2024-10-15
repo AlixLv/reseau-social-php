@@ -1,3 +1,7 @@
+<?php
+include './subscriptions-controller.php';
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -7,9 +11,6 @@
         <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
-    <?php 
-        include '../resoc_n1/main/header.php';
-    ?>
         <div id="wrapper">
             <aside>
                 <img src="../images/user.jpg" alt="Portrait de l'utilisatrice"/>
@@ -25,34 +26,16 @@
             </aside>
             <main class='contacts'>
                 <?php
-                    include '../resoc_n1/main/main-utilities.php';
-                    $connected_id = $_SESSION['connected_id'];
-                    echo $connected_id;
-                    if (isLoggedIn($connected_id)) {
-                
-                        $userId = intval($_GET['user_id']); 
-                        $laQuestionEnSql = "
-                            SELECT users.* 
-                            FROM followers 
-                            LEFT JOIN users ON users.id=followers.followed_user_id 
-                            WHERE followers.following_user_id='$userId'
-                            GROUP BY users.id
-                            ";
-                        while ($subscriber = $lesInformations->fetch_assoc())
+                    
+                        while ($subscriber = $followingData->fetch_assoc())
                         {
                             echo "<article>";
-                            echo "<img src='user.jpg' alt='blason'/>";
+                            echo "<img src='../images/user.jpg' alt='blason'/>";
                             echo "<h3>" . $subscriber['alias'] . "</h3>";
                             echo "<p>Id: " . $subscriber['id'] . "</p>";            
                             echo "</article>";
                         }
-                    } 
-                    else {
-                        header("Location: ../resoc_n2/login.php");
-                    }
                 ?>
-
-
             </main>
         </div>
     </body>

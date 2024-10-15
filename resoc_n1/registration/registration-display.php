@@ -8,7 +8,7 @@
     </head>
     <body>
     <?php 
-        include '../resoc_n1/main/header.php';
+        include '../main/header.php';
         ?>
 
         <div id="wrapper" >
@@ -29,7 +29,7 @@
                         $new_alias = $_POST['pseudo'];
                         $new_passwd = $_POST['motpasse'];
 
-                        include '../resoc_n1/main/main-utilities.php';
+                        include '../main/main-utilities.php';
                         $mysqli = dataBaseConnexion();
 
                         $new_email = $mysqli->real_escape_string($new_email);

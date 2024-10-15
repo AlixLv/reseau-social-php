@@ -8,8 +8,8 @@
     </head>
     <body>
     <?php 
-        include '../../resoc_n1/main/header.php';
-        include '../../resoc_n1/main/main-utilities.php';
+        include '../main/header.php';
+        include '../main/main-utilities.php';
         $mysqli = dataBaseConnexion();
         ?>
 
