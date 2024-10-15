@@ -27,9 +27,7 @@ function getQueryResponse($sqlQuery, $mysqli) {
     return $response;
 }
 
-function checkFollower($followedUser, $followingUser) {
-    $mysqli = dataBaseConnexion();
-
+function checkFollower($followedUser, $followingUser, $mysqli) {
     $checkQuery = $mysqli->query("SELECT * FROM followers
     WHERE following_user_id =" . $followingUser . "
     AND followed_user_id =" . $followedUser);
@@ -106,7 +104,7 @@ function getTags() {
 }
 
 function follow($db_connexion, $wall_id, $session_id) {
-    if (!checkFollower($wall_id, $session_id)) {
+    if (!checkFollower($wall_id, $session_id, $db_connexion)) {
          $followQuery = $db_connexion->query("INSERT INTO followers
         (id, followed_user_id, following_user_id)
         VALUES (NULL, " . $wall_id . ", ". $session_id . ")");

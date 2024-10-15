@@ -3,6 +3,13 @@ function isLoggedIn($session_id) {
     return isset($session_id) ? true : false;
 }
 session_start();
+
+function logout() {
+    echo 'logout';
+    // session_destroy();
+    // header("Refresh:0");
+}
+
 ?>
 
 <header>
@@ -21,6 +28,7 @@ session_start();
                 echo "<li><a href='../settings/settings-display.php?user_id=5'>Paramètres</a></li>";
                 echo "<li><a href='../followers/followers-display.php?user_id=5'>Mes suiveurs</a></li>";
                 echo "<li><a href='../subscriptions/subscriptions-display.php?user_id=5'>Mes abonnements</a></li>";
+                echo "<li><a href='../login/login-display.php' onclick=" . logout() . ">Déconnexion</a></li>";
                 echo "</ul>";
 
             }

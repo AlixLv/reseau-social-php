@@ -71,7 +71,7 @@
                         <button type="submit" name="follow">
                             <?php 
                             //Génération du bouton "Follow"/"Unfollow"
-                            if (checkFollower($userId, $connected_id)) {
+                            if (checkFollower($userId, $connected_id, $mysqli)) {
                                 echo "Unfollow";
                             } else {
                                 echo "Follow";

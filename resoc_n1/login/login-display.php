@@ -60,10 +60,11 @@
                             
                         } else
                         {
-                            echo "Votre connexion est un succès : " . $user['alias'] . ".";
-                            // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
-                            // documentation: https://www.php.net/manual/fr/session.examples.basic.php
+                            // echo "Votre connexion est un succès : " . $user['alias'] . ".";
+
                             $_SESSION['connected_id']=$user['id'];
+
+                            header("Location: ../wall/wall-display.php?user_id=" . $_SESSION['connected_id']);
                         }
                     }
                     ?>                     
