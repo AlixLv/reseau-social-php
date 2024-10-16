@@ -13,7 +13,8 @@ function getPostsByTag($tag){
     users.alias AS author_name,
     COUNT(distinct likes.id) AS like_number,
     users.id AS user_id,
-    GROUP_CONCAT(DISTINCT tags.label) AS taglist
+    GROUP_CONCAT(DISTINCT tags.label) AS taglist,
+    GROUP_CONCAT(DISTINCT tags.id) AS tagsId 
     FROM posts_tags AS filter
     JOIN posts ON posts.id = filter.post_id
     JOIN users ON users.id = posts.user_id

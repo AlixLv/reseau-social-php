@@ -52,8 +52,17 @@ function renderPost($postInfo, $targetUrl) {
     echo "            <button type='submit' name='like'>" . "♥ " . $postInfo['like_number'] . "</button>";
     echo "        </form>";
     $tags = explode(',', $postInfo['taglist']);
+ 
+    $mysqli= dataBaseConnexion();
     foreach ($tags as $tag) {
-        echo "<a href=''>" . $tag . "</a>";
+        
+        $selectTagIdQuery = "SELECT id FROM tags WHERE tags.label =  '$tag' ";
+         $idTag = getQueryResponse($selectTagIdQuery, $mysqli);
+         while($fetchingIdTag= $idTag->fetch_assoc()){
+            echo "<a href='../tags/tags-display.php?tag_id=" . $fetchingIdTag['id'] . "'>" . $tag . "</a> ";
+         }
+        
+
     }
     echo "    </footer>";
     echo "</article>";

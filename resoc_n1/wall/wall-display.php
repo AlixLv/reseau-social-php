@@ -48,12 +48,12 @@
                 </section>
             </aside>
             <main>
-                <div id="new_post">
+                <div class="newpost">
                   <form action='./<?php echo $end_url ?>' method='post'>
-                      <dl>  
+                      <dl class="creatingpost">  
                             <dt><label for='content'>Message: </label></dt>
                             <dd><input type='textarea'name='content'></dd>
-                            <dt><label for='tag'>Tags: </label></dt>
+                            <dt><label for='tag'">Tags: </label></dt>
                             <dd><select name='tag'>
                             <?php
                                 //Menu déroulant "Tags"
