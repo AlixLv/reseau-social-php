@@ -52,7 +52,7 @@
                         } else
                         {
                             echo "Votre inscription est un succès : " . $new_alias;
-                            echo " <a href='login.php'>Connectez-vous.</a>";
+                            echo " <a href='../login/login-display.php'>Connectez-vous.</a>";
                         }
                     }
                     ?>
