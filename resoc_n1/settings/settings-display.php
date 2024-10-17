@@ -1,20 +1,20 @@
+<?php 
+    include "./settings-controller.php";
+?>
 <!doctype html>
 <html lang="fr">
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Paramètres</title> 
-        <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
+        <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
-    <?php 
-        include 'header.php';
-    ?>
         <div id="wrapper" class='profile'>
 
 
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="../images/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les informations de l'utilisatrice
@@ -23,26 +23,6 @@
                 </section>
             </aside>
             <main>
-                <?php
-                $userId = intval($_GET['user_id']);
-
-                include '../resoc_n1/utilities.php';
-                $laQuestionEnSql = "
-                    SELECT users.*, 
-                    count(DISTINCT posts.id) as totalpost, 
-                    count(DISTINCT given.post_id) as totalgiven, 
-                    count(DISTINCT recieved.user_id) as totalrecieved 
-                    FROM users 
-                    LEFT JOIN posts ON posts.user_id=users.id 
-                    LEFT JOIN likes as given ON given.user_id=users.id 
-                    LEFT JOIN likes as recieved ON recieved.post_id=posts.id 
-                    WHERE users.id = " . $userId ."  
-                    GROUP BY users.id
-                    ";
-                include 'query-response.php';
-                $user = $lesInformations->fetch_assoc();
-
-                ?>                
                 <article class='parameters'>
                     <h3>Mes paramètres</h3>
                     <dl>

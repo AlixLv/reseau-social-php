@@ -3,12 +3,12 @@
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Post d'usurpateur</title> 
-        <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
+        <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
     <?php 
-        include '../resoc_n1/header.php';
+        include '../main/header.php';
         ?>
 
         <div id="wrapper" >
@@ -22,17 +22,14 @@
                 <article>
                     <h2>Poster un message</h2>
                     <?php
-                    /**
-                     * BD
-                     */
-                    include '../resoc_n1/utilities.php';
+                    include_once '../main/main-utilities.php';
                     $mysqli = dataBaseConnexion();
                     /**
                      * Récupération de la liste des auteurs
                      */
                     $listAuteurs = [];
                     $laQuestionEnSql = "SELECT * FROM users";
-                    include '../resoc_n1/query-response.php';
+
                     while ($user = $lesInformations->fetch_assoc())
                     {
                         $listAuteurs[$user['id']] = $user['alias'];

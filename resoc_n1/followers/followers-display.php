@@ -1,18 +1,19 @@
+<?php
+include './followers-controller.php';
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Mes abonnés </title> 
-        <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
+        <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
-    <?php 
-        include 'header.php';
-    ?>
         <div id="wrapper">          
             <aside>
-                <img src = "user.jpg" alt = "Portrait de l'utilisatrice"/>
+                <img src = "../images/user.jpg" alt = "Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez la liste des personnes qui
@@ -23,22 +24,11 @@
             </aside>
             <main class='contacts'>
                 <?php
-                $userId = intval($_GET['user_id']);
-                include '../resoc_n1/utilities.php';
-                $laQuestionEnSql = "
-                    SELECT users.*
-                    FROM followers
-                    LEFT JOIN users ON users.id=followers.following_user_id
-                    WHERE followers.followed_user_id='$userId'
-                    GROUP BY users.id
-                    ";
-                include 'query-response.php';
-                
-                while ($subscriber = $lesInformations->fetch_assoc())
+                while ($subscriber = $followersData->fetch_assoc())
                 {
                 ?>
                 <article>
-                    <img src="user.jpg" alt="blason"/>
+                    <img src="../images/user.jpg" alt="blason"/>
                     <h3><?php echo $subscriber['alias'] ?></h3>
                     <p><?php echo "Id: " . $subscriber['id'] ?></p>
                 </article>

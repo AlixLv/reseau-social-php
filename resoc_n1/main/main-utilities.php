@@ -1,5 +1,8 @@
 <?php
 
+// session_start();
+// session_destroy();
+
 function dataBaseConnexion(){
     $mysqli = new mysqli("localhost", "root", "", "socialnetwork");
         if ($mysqli->connect_errno)
@@ -10,13 +13,21 @@ function dataBaseConnexion(){
             echo "</article>";
             exit();
         }
+    
     return $mysqli;
 }
 
+function getQueryResponse($sqlQuery, $mysqli) {
+    $response = $mysqli->query($sqlQuery);
+    if ( ! $response)
+    {
+        echo("Échec de la requete : " . $mysqli->error);
+        exit();
+    }
+    return $response;
+}
 
-function checkFollower($followedUser, $followingUser) {
-    $mysqli = dataBaseConnexion();
-
+function checkFollower($followedUser, $followingUser, $mysqli) {
     $checkQuery = $mysqli->query("SELECT * FROM followers
     WHERE following_user_id =" . $followingUser . "
     AND followed_user_id =" . $followedUser);
@@ -28,27 +39,30 @@ function checkFollower($followedUser, $followingUser) {
     }
 }
 
-function renderPost($postInfo) {
-    
+function renderPost($postInfo, $targetUrl) {
     echo "<article>";
     echo "    <h3>";
     echo "        <time>" . $postInfo['created'] . "</time>";
     echo "    </h3>";
-    echo "    <address><a href='wall.php?user_id=" . $postInfo['user_id'] . "'>Par " . $postInfo['author_name'] . "</a></address>";
+    echo "    <address><a href='../wall/wall-display.php?user_id=" . $postInfo['user_id'] . "'>Par " . $postInfo['author_name'] . "</a></address>";
     echo "    <div><p>" . $postInfo['content'] . "</p></div>";
     echo "    <footer>";
-    echo "        <form action='like.php' method='post'>";
-    if (isset($_GET["user_id"])) {
-        echo "            <input type='hidden' name='wall_user_id' value='" . $_GET['user_id'] . "'>";
-    }
-    $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[REQUEST_URI]";
-    // var_dump($actual_link); // Commented out to avoid output
+    echo "        <form action='./" . $targetUrl . "' method='post'>";
     echo "            <input type='hidden' name='post_id' value='" . $postInfo['post_id'] . "'>";
     echo "            <button type='submit' name='like'>" . "♥ " . $postInfo['like_number'] . "</button>";
     echo "        </form>";
     $tags = explode(',', $postInfo['taglist']);
+ 
+    $mysqli= dataBaseConnexion();
     foreach ($tags as $tag) {
-        echo "<a href=''>" . $tag . "</a>";
+        
+        $selectTagIdQuery = "SELECT id FROM tags WHERE tags.label =  '$tag' ";
+         $idTag = getQueryResponse($selectTagIdQuery, $mysqli);
+         while($fetchingIdTag= $idTag->fetch_assoc()){
+            echo "<a href='../tags/tags-display.php?tag_id=" . $fetchingIdTag['id'] . "'>" . $tag . "</a> ";
+         }
+        
+
     }
     echo "    </footer>";
     echo "</article>";
@@ -96,8 +110,41 @@ function getTags() {
     return $listTags;
 }
 
-function isLoggedIn() {
-    return isset($_SESSION["connected_id"]) ? true : false;
+function follow($db_connexion, $wall_id, $session_id) {
+    if (!checkFollower($wall_id, $session_id, $db_connexion)) {
+         $followQuery = $db_connexion->query("INSERT INTO followers
+        (id, followed_user_id, following_user_id)
+        VALUES (NULL, " . $wall_id . ", ". $session_id . ")");
+    } else {
+        $unfollowQuery = $db_connexion->query("DELETE FROM followers
+        WHERE followed_user_id = " . $wall_id . "
+        AND following_user_id = " . $session_id);
+    }
 }
+
+function likePost($post_id, $session_id, $db_connexion) {
+
+    $checkedIfLikedQuery = $db_connexion->query("SELECT * FROM likes
+    WHERE user_id =" . $session_id . "
+    AND post_id =" . $post_id);
+
+    if ($checkedIfLikedQuery->num_rows == 0) {
+        $db_connexion->query("INSERT INTO likes
+        (id, user_id, post_id)
+        VALUES (NULL, " . $session_id . ", ". $post_id .")");
+    } else {
+        $db_connexion->query("DELETE FROM likes
+        WHERE user_id = " . $session_id . " 
+        AND post_id = ". $post_id);
+    }
+}
+
+function getUrl($request) {
+    $url =  "http://". $request;
+    $url_array = explode('/', $url);
+    $cropped_url = end($url_array);   
+    return $cropped_url;
+}
+
 
 ?>

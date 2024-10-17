@@ -3,12 +3,12 @@
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Inscription</title> 
-        <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <meta name="authors" content="Anne Kaftal, Alix Levé, William Petitpierre, Moussa Traoré">
+        <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
     <?php 
-        include '../resoc_n1/header.php';
+        include '../main/header.php';
         ?>
 
         <div id="wrapper" >
@@ -29,7 +29,7 @@
                         $new_alias = $_POST['pseudo'];
                         $new_passwd = $_POST['motpasse'];
 
-                        include '../resoc_n1/utilities.php';
+                        include_once '../main/main-utilities.php';
                         $mysqli = dataBaseConnexion();
 
                         $new_email = $mysqli->real_escape_string($new_email);
@@ -52,11 +52,11 @@
                         } else
                         {
                             echo "Votre inscription est un succès : " . $new_alias;
-                            echo " <a href='login.php'>Connectez-vous.</a>";
+                            echo " <a href='../login/login-display.php'>Connectez-vous.</a>";
                         }
                     }
                     ?>
-                    <form action="registration.php" method="post">
+                    <form action="registration-display.php" method="post">
                         <dl>
                             <dt><label for='pseudo'>Pseudo</label></dt>
                             <dd><input type='text'name='pseudo'></dd>
